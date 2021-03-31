@@ -1,11 +1,27 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Row, Col } from 'react-bootstrap'
 import Product from '../components/Product'
 
-import products from '../products'
+import axios from 'axios'
 
 
 function HomeScreen() {
+    // start function to get data from django model with api
+    const [products, setProducts] = useState([])
+
+    useEffect(() => {
+        
+        async function fetchProducts(){
+            const { data } = await axios.get('/api/products/')
+            setProducts(data)
+        }
+        
+        fetchProducts()
+        
+    }, [])
+
+    // end
+
     return (
         <div>
             <h1>Latest Products</h1>
@@ -18,7 +34,7 @@ function HomeScreen() {
             </Row>
         </div>
     )
-}
+};
 
 
 export default HomeScreen
