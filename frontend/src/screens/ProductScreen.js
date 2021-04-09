@@ -1,31 +1,33 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Children } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Row, Col, Image, ListGroup, Button, Card } from 'react-bootstrap'
 import Rating from '../components/Rating'
-import axios from 'axios'
+import Loader from '../components/Loader'
+import Message from '../components/Message'
+import { listProductDetails } from '../actions/productActions'
+
 
 
 function ProductScreen({ match }) {
     // start function to get data from django model with api
-    const [product, setProduct] = useState([])
+    const dispatch = useDispatch()
+    const productDetails = useSelector(state => state.productDetails) //state.productDetails is from store.js
+    const { loading, error, product } = productDetails
 
     useEffect(() => {
-        async function fetchProduct(){
-            const { data } = await axios.get(`/api/product/${match.params.id}`)
-            setProduct(data)
-        }
-        fetchProduct()
+        dispatch(listProductDetails(match.params.id))
 
-    }, [])
+    }, [dispatch, match])
 
     // end
-
-
 
     return (
         <div>
             <Link to='/' className='btn btn-light my3' > Go Back </Link>
-            <Row>
+            {   loading ? <Loader/>
+                : error ? <Message variant='dark'>{error}</Message>
+                : (<Row>
                 <Col md={6}>
                     <Image src={product.image} alt={product.name} fluid/>
                 </Col>
@@ -80,7 +82,9 @@ function ProductScreen({ match }) {
                         </ListGroup>
                     </Card>
                 </Col>
-            </Row>
+            </Row>)
+            }
+            
         </div>
     )
 }
