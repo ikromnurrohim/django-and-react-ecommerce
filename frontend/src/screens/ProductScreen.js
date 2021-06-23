@@ -24,7 +24,7 @@ function ProductScreen({ match, history }) {
     // end
 
     const addToCartHandler = () => {
-        history.push(`/cart/${match.params.id}?${qty}`)
+        history.push(`/cart/${match.params.id}?qty=${qty}`)
     }
 
     return (
@@ -87,7 +87,7 @@ function ProductScreen({ match, history }) {
                                                 onChange={(e) => setQty(e.target.value)}
                                             >
                                                 {
-                                                    [...Array(product.countInStock).keys()].map((x) =>(
+                                                    [...Array(product.countInStock).keys()].map((x) =>(  //pake () karena return nya object {}, agar bisa membedakan antara blok fungsi dengan object
                                                         <option key={x + 1} value={x + 1}>
                                                             {x + 1}
                                                         </option>
