@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
-
+ 
 from .products import products
 from .models import Product
 from .serializers import ProductSerializer
@@ -22,7 +22,7 @@ def getProducts(request):
 @api_view(['GET'])
 def getProduct(request, pk):
     product = Product.objects.get(_id=pk)
-    serializer = ProductSerializer(product, many=False) # many False karna get, many True jika ALl 
+    serializer = ProductSerializer(product, many=False) # many False karna get, many True jika ALL
     return Response(serializer.data)
 
 

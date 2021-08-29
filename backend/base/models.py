@@ -1,9 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User 
-
+ 
 
 class Product(models.Model):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True) # krtika User di hapus, Product akan tetap tersimpan
     name = models.CharField(max_length=200, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
     brand = models.CharField(max_length=200, null=True, blank=True)
@@ -63,7 +63,7 @@ class OrderItem(models.Model):
 
 
 class ShippingAddress(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE, null=True, blank=True)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, null=True, blank=True) # CASCADE ketika Order nya dihapus, maka akan menghapus ShippingAddress
     address = models.CharField(max_length=200, null=True, blank=True)
     city = models.CharField(max_length=200, null=True, blank=True)
     postalCode = models.CharField(max_length=200, null=True, blank=True)
