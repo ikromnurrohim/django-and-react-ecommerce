@@ -33,6 +33,8 @@ INSTALLED_APPS = [
     'base.apps.BaseConfig',
 ]
 
+
+# Restrict authentication from django, and just use rest_framework
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -40,6 +42,7 @@ REST_FRAMEWORK = {
 }
 
 
+# Configuration JWT
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
@@ -50,8 +53,8 @@ SIMPLE_JWT = {
     'ALGORITHM': 'HS256',
     'SIGNING_KEY': settings.SECRET_KEY,
     'VERIFYING_KEY': None,
-    'AUDIENCE': None,
-    'ISSUER': None,
+    'AUDIENCE': "User",
+    'ISSUER': "PROSHOP",
     'JWK_URL': None,
     'LEEWAY': 0,
 
