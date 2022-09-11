@@ -106,7 +106,7 @@ export const getUserDetail = (id) => async (dispatch, getState) => {
     const {
       userLogin: { userInfo },
     } = getState();
-    console.log("token", userInfo.token);
+    
     const config = {
       headers: {
         "Content-Type": "application/json",

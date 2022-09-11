@@ -18,13 +18,11 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         serializer = UserSerializerWithToken(self.user).data
         for key, value in serializer.items(): # use .items() , if not will be return html
             data[key] = value
-        print("data", data)
         return data
 
 
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
-    print("serializer_class", serializer_class)
 
 
 
@@ -49,7 +47,8 @@ def register_user(request):
 @permission_classes([IsAuthenticated])
 def update_user_profile(request):
     user = request.user
-    serializer = UserSerializer(user, many=False)
+    serializer = UserSerializerWithToken(user, many=False)
+
     data = request.data
     user.first_name = data['name']
     user.username = data['email']
