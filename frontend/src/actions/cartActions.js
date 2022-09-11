@@ -1,9 +1,14 @@
 import axios from 'axios'
-import { CART_ADD_ITEM, CART_REMOVE_ITEM } from '../constants/cartConstants'
+import {
+    CART_ADD_ITEM,
+    CART_REMOVE_ITEM
+} from '../constants/cartConstants'
 
 
-export const addToCart = (id, qty) => async (dispacth, getState) => {
-    const {data} = await axios.get(`/api/product/${id}`)
+export const addToCart = (id, qty) => async(dispacth, getState) => {
+    const {
+        data
+    } = await axios.get(`/api/products/${id}`)
 
     dispacth({
         type: CART_ADD_ITEM,

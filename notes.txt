@@ -1,0 +1,34 @@
+Frontend
+
+first make a constants.js
+then make a reducers.js
+then make in store.js
+then make a action.js
+if localStorage then make in store.js to getItem from localStorage
+then make a screen.js
+then make a app.js
+then make a component to use in screen.js
+then make a route in app.js
+
+
+useSelector 
+It takes in a function argument that returns the part of the state that you want.
+
+
+useDispatch 
+which is will work with the all action from the actions folder
+
+
+useEffect 
+useEffect(didUpdate);
+Accepts a function that contains imperative, possibly effectful code.
+Mutations, subscriptions, timers, logging, and other side effects are not allowed inside the main body of a function component (referred to as React’s render phase). Doing so will lead to confusing bugs and inconsistencies in the UI.
+Instead, use useEffect. The function passed to useEffect will run after the render is committed to the screen. Think of effects as an escape hatch from React’s purely functional world into the imperative world.
+By default, effects run after every completed render, but you can choose to fire them onl
+
+
+useState
+const [state, setState] = useState(initialState);
+Returns a stateful value, and a function to update it.
+During the initial render, the returned state (state) is the same as the value passed as the first argument (initialState).
+The setState function is used to update the state. It accepts a new state value and enqueues a re-render of the component.
